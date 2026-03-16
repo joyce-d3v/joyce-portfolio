@@ -108,19 +108,20 @@ box-shadow:0 15px 30px rgba(0,0,0,0.12);
     color: #555;
 }
 
-.project-card a {
-    text-decoration: none;
-    color: #1f2937;
-    font-weight: bold;
-    border: 1px solid #1f2937;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+.project-card a{
+display:inline-block;
+text-decoration:none;
+background:#1f2937;
+color:white;
+padding:8px 14px;
+border-radius:6px;
+font-weight:500;
+transition:all 0.3s ease;
 }
 
-.project-card a:hover {
-    background: #1f2937;
-    color: #fff;
+.project-card a:hover{
+background:#374151;
+transform:translateY(-2px);
 }
 
 body{
