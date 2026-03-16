@@ -30,11 +30,11 @@ font-weight:600;
 }
 
 /* Header */
-header {
-    text-align: center;
-    padding: 60px 0;
-    background: #1f2937;
-    color: #fff;
+header{
+text-align:center;
+padding:80px 20px;
+background:linear-gradient(135deg,#1f2937,#111827);
+color:white;
 }
 
 header h1 {
