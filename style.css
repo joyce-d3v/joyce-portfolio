@@ -66,6 +66,29 @@ header p {
     color: #555;
 }
 
+/* Skills Section */
+
+#skills{
+padding:60px 0;
+text-align:center;
+}
+
+.skills-grid{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.skill{
+background:white;
+padding:12px 20px;
+border-radius:8px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+font-weight:500;
+}
+
 /* Projects Section */
 #projects {
     padding: 50px 0;
