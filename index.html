@@ -1,84 +1,123 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joyce Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet"href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joyce — Frontend Developer</title>
+  <meta name="description" content="Joyce — frontend developer turning ideas into elegant, responsive web experiences." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Header / Intro Section -->
-    </header>
+  <div class="grain"></div>
 
-    <!-- About / Bio Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Front End Developer with a solid foundation in HTML, CSS and responsive design, dedicated to building seamless and user centered web experiences. Currently pursuing a Bachelor’s degree in Software Engineering , where I continue to strengthen my technical expertise and problem solving abilities. Passionate about transforming ideas into functional, visually engaging interfaces, I embrace continuous learning and actively explore emerging technologies to enhance performance and usability. As an active member of Techsis, I collaborate with fellow developers, contribute to innovative projects, and foster growth within a dynamic tech community .</p>
+  <!-- Nav -->
+  <header class="nav">
+    <a href="#top" class="logo">Joyce<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="status">
+      <span class="pulse"></span>
+      <span>Available · <span id="clock">--:--</span></span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="hero">
+    <div class="container">
+      <p class="eyebrow reveal">✦ Frontend Developer · Lagos</p>
+      <h1 class="display reveal">Joyce<span class="dot italic">.</span></h1>
+      <p class="lede reveal">
+        Turning ideas into <span class="accent italic">elegant</span>, responsive web experiences.
+      </p>
+      <div class="cta-row reveal">
+        <a href="#work" class="btn btn-primary">View work <span class="arrow">↗</span></a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll ↓</div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container grid-12">
+      <div class="col-3"><p class="label">(About)</p></div>
+      <div class="col-9">
+        <p class="big-text reveal">
+          Hi, I'm Joyce — a frontend developer passionate about creating <span class="accent italic">beautiful</span> and responsive web experiences. I enjoy turning ideas into interactive designs using modern web technologies while constantly learning and improving my craft.
+        </p>
+        <p class="muted-text reveal">
+          I love clean aesthetics, smooth user experiences, and building projects that feel both functional and emotionally engaging.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="label">(Selected work)</p>
+          <h2 class="heading italic">Projects.</h2>
         </div>
-    </section>
-    
-    <section id="skills">
-  <div class="container">
+        <p class="label count">04 projects</p>
+      </div>
+      <div id="projects" class="projects"></div>
+    </div>
+  </section>
 
-    <h2>Skills</h2>
-
-    <div class="skills-grid">
-
-      <div class="skills-grid">
-
-<div class="skill">
-<i class="fa-brands fa-html5"></i> HTML
-</div>
-
-<div class="skill">
-<i class="fa-brands fa-css3-alt"></i> CSS
-</div>
-
-<div class="skill">
-<i class="fa-brands fa-js"></i> JavaScript
-</div>
-
-<div class="skill">
-<i class="fa-brands fa-python"></i> Python
-</div>
-
-</div>
-
-  </div>
-</section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">               
-                    <h3>Fintech Dashboard</h3>
-                    <p>HTML, CSS, JavaScript</p>
-                    <a href="https://joyce-d3v.github.io/fintech-dashboard">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>Task-Manager</h3>
-                    <p>HTML, CSS, JavaScript</p>
-                    <a href="https://joyce-d3v.github.io/Task-Manager">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>Responsive Landing Page</h3>
-                    <p>HTML, CSS</p>
-                    <a href="https://joyce-d3v.github.io/Landing-Page">View Project</a>
-                </div>
-            </div>
+  <!-- Skills -->
+  <section id="skills" class="section">
+    <div class="container grid-12">
+      <div class="col-3">
+        <p class="label">(Toolkit)</p>
+        <h2 class="heading italic">Skills.</h2>
+      </div>
+      <div class="col-9 skills-grid">
+        <div>
+          <p class="cat">Languages</p>
+          <ul><li>HTML</li><li>CSS3</li><li>JavaScript</li></ul>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Joyce</p>
+        <div>
+          <p class="cat">Frameworks &amp; Libraries</p>
+          <ul><li>React</li></ul>
         </div>
-    </footer>
+        <div>
+          <p class="cat">Tools &amp; Platforms</p>
+          <ul><li>GitHub</li><li>VS Code</li><li>Figma</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <p class="label">(Let's talk)</p>
+      <h2 class="mega">Have a project<br /><span class="accent italic">in mind?</span></h2>
+      <a href="mailto:aneneojoyce@gmail.com" class="email-link">aneneojoyce@gmail.com <span class="arrow">↗</span></a>
+      <div class="socials">
+        <a href="https://github.com/joyce-d3v" target="_blank" rel="noreferrer" class="btn btn-ghost">GitHub</a>
+        <a href="#" class="btn btn-ghost muted">LinkedIn (soon)</a>
+        <a href="mailto:aneneojoyce@gmail.com" class="btn btn-ghost">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <p>© 2026 Joyce — Crafted with care.</p>
+      <p>Designed &amp; built in Lagos.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
