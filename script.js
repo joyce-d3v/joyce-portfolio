@@ -1,79 +1,220 @@
-// ---------- Live clock ----------
-function tickClock() {
-  const el = document.getElementById("clock");
-  if (!el) return;
-  el.textContent = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
-}
-tickClock();
-setInterval(tickClock, 30000);
+/* =========================================================
+   PORTFOLIO INTERACTIONS
+========================================================= */
 
-// ---------- Projects data ----------
-const projects = [
-  {
-    n: "01",
-    name: "Fintech Dashboard",
-    desc: "A modern fintech dashboard with clean analytics, responsive layouts, and intuitive UI for tracking financial data.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://joyce-d3v.github.io/fintech-dashboard/",
-  },
-  {
-    n: "02",
-    name: "Task Manager",
-    desc: "A productivity-focused task app that helps users organize, track, and manage daily tasks efficiently.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://joyce-d3v.github.io/Task-Manager/",
-  },
-  {
-    n: "03",
-    name: "Joddbot",
-    desc: "An interactive AI chatbot interface designed for smooth, engaging conversational experiences with a modern UI.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://chat-bot-git-master-eadafe-davids-projects.vercel.app",
-  },
-  {
-    n: "04",
-    name: "SizzleBox UI Replica",
-    desc: "A polished UI recreation inspired by SizzleBox — focused on responsive layouts and pixel-perfect styling.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    link: "https://joyce-d3v.github.io/sizzlebox/",
-  },
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-function renderProjects() {
-  const wrap = document.getElementById("projects");
-  if (!wrap) return;
-  wrap.innerHTML = projects
-    .map(
-      (p) => `
-    <a class="project reveal" href="${p.link}" target="_blank" rel="noreferrer">
-      <span class="project-num">${p.n}</span>
-      <h3 class="project-name">${p.name}</h3>
-      <p class="project-desc">${p.desc}</p>
-      <div class="tech">${p.tech.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-      <span class="project-arrow">↗</span>
-    </a>
-  `
-    )
-    .join("");
-  observeReveals();
-}
+  /* -------------------------------------------------------
+     ELEMENTS
+  ------------------------------------------------------- */
 
-// ---------- Reveal on scroll ----------
-function observeReveals() {
-  const els = document.querySelectorAll(".reveal:not(.in)");
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileNav = document.querySelector(".mobile-nav");
+  const mobileLinks = document.querySelectorAll(".mobile-nav a");
+
+  const navLinks = document.querySelectorAll(".desktop-nav .nav-link");
+  const sections = document.querySelectorAll("main section[id]");
+
+  const revealElements = document.querySelectorAll(".reveal");
+
+
+  /* -------------------------------------------------------
+     MOBILE NAVIGATION
+  ------------------------------------------------------- */
+
+  if (menuToggle && mobileNav) {
+
+    menuToggle.addEventListener("click", () => {
+
+      const isOpen = menuToggle.classList.toggle("active");
+
+      mobileNav.classList.toggle("open", isOpen);
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+      mobileNav.setAttribute("aria-hidden", String(!isOpen));
+
+      document.body.classList.toggle("menu-open", isOpen);
+
+    });
+
+
+    mobileLinks.forEach((link) => {
+
+      link.addEventListener("click", () => {
+
+        menuToggle.classList.remove("active");
+
+        mobileNav.classList.remove("open");
+
+        menuToggle.setAttribute("aria-expanded", "false");
+
+        mobileNav.setAttribute("aria-hidden", "true");
+
+        document.body.classList.remove("menu-open");
+
       });
-    },
-    { threshold: 0.1, rootMargin: "-50px" }
-  );
-  els.forEach((el) => io.observe(el));
-}
 
-renderProjects();
-observeReveals();
+    });
+
+  }
+
+
+  /* -------------------------------------------------------
+     SCROLL REVEAL
+  ------------------------------------------------------- */
+
+  if ("IntersectionObserver" in window) {
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+
+        entries.forEach((entry) => {
+
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("visible");
+
+          observer.unobserve(entry.target);
+
+        });
+
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -45px 0px"
+      }
+    );
+
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+  } else {
+
+    revealElements.forEach((element) => {
+      element.classList.add("visible");
+    });
+
+  }
+
+
+  /* -------------------------------------------------------
+     ACTIVE NAVIGATION
+  ------------------------------------------------------- */
+
+  if ("IntersectionObserver" in window) {
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const currentId = entry.target.getAttribute("id");
+
+          navLinks.forEach((link) => {
+
+            const linkTarget = link.getAttribute("href");
+
+            link.classList.toggle(
+              "active",
+              linkTarget === `#${currentId}`
+            );
+
+          });
+
+        });
+
+      },
+      {
+        rootMargin: "-35% 0px -55% 0px",
+        threshold: 0
+      }
+    );
+
+
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+
+  }
+
+
+  /* -------------------------------------------------------
+     HEADER SHADOW ON SCROLL
+  ------------------------------------------------------- */
+
+  const header = document.querySelector(".site-header");
+
+  const updateHeader = () => {
+
+    if (!header) {
+      return;
+    }
+
+    if (window.scrollY > 20) {
+      header.style.boxShadow = "0 10px 35px rgba(0, 0, 0, 0.18)";
+    } else {
+      header.style.boxShadow = "none";
+    }
+
+  };
+
+  updateHeader();
+
+  window.addEventListener("scroll", updateHeader, {
+    passive: true
+  });
+
+
+  /* -------------------------------------------------------
+     CLOSE MOBILE MENU WITH ESCAPE
+  ------------------------------------------------------- */
+
+  document.addEventListener("keydown", (event) => {
+
+    if (event.key !== "Escape") {
+      return;
+    }
+
+    if (!menuToggle || !mobileNav) {
+      return;
+    }
+
+    menuToggle.classList.remove("active");
+
+    mobileNav.classList.remove("open");
+
+    menuToggle.setAttribute("aria-expanded", "false");
+
+    mobileNav.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("menu-open");
+
+  });
+
+
+  /* -------------------------------------------------------
+     EXTERNAL LINKS
+  ------------------------------------------------------- */
+
+  const externalLinks = document.querySelectorAll(
+    'a[target="_blank"]'
+  );
+
+  externalLinks.forEach((link) => {
+
+    link.addEventListener("click", () => {
+      link.blur();
+    });
+
+  });
+
+});
